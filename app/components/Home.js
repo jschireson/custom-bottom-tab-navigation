@@ -1,68 +1,132 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {TouchableWithoutFeedback, SafeAreaView, StyleSheet, Text, View, FlatList} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { color } from 'react-native-reanimated';
 import AnimatedScrollView from './AnimatedScrollView';
 
+
+const DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'David Lipman (1230) beat Jacob Schireson (1140)',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Elon Musk (1130) eviscerated Jeff Bezos (1150)',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Jeff Bezos (1020) destroyed Mickey Mouse (780)',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'LeBron James (1020) destroyed Kevin Durant (780)',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Lionel Messi (1020) destroyed Erling Haaland (780)',
+  },
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'David Lipman (1230) beat Jacob Schireson (1140)',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Elon Musk (1130) eviscerated Jeff Bezos (1150)',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Jeff Bezos (1020) destroyed Mickey Mouse (780)',
+  },
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'David Lipman (1230) beat Jacob Schireson (1140)',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Elon Musk (1130) eviscerated Jeff Bezos (1150)',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Jeff Bezos (1020) destroyed Mickey Mouse (780)',
+  },
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'David Lipman (1230) beat Jacob Schireson (1140)',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Elon Musk (1130) eviscerated Jeff Bezos (1150)',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Jeff Bezos (1020) destroyed Mickey Mouse (780)',
+  },
+];
+
+const Item = ({ title }) => (
+  <View style={styles.item}>
+    <Text style={styles.title}>{title}</Text>
+  </View>
+);
+
 const Home = () => {
+
+  const renderItem = ({ item }) => (
+    <View>
+      <Item title={item.title} />
+    </View>
+
+  );
+
   return (
-    <AnimatedScrollView style={styles.container}>
-      <Text style={styles.text}>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's standard dummy
-        text ever since the 1500s, when an unknown printer took a galley of type
-        and scrambled it to make a type specimen book. It has survived not only
-        five centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's standard dummy
-        text ever since the 1500s, when an unknown printer took a galley of type
-        and scrambled it to make a type specimen book. It has survived not only
-        five centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's standard dummy
-        text ever since the 1500s, when an unknown printer took a galley of type
-        and scrambled it to make a type specimen book. It has survived not only
-        five centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's standard dummy
-        text ever since the 1500s, when an unknown printer took a galley of type
-        and scrambled it to make a type specimen book. It has survived not only
-        five centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
+    <SafeAreaView style={styles.container}>
+      <View style={{flex:1, justifyContent: 'flex-start', alignItems:'flex-start'}}>
+      <Text>
+        Recent Games
       </Text>
-    </AnimatedScrollView>
+      </View>
+      <TouchableWithoutFeedback onPress={() => alert('Pressed!')}>
+      <View style={{flex:20, flexDirection:'column'}}>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
+      </View>
+      </TouchableWithoutFeedback>
+      
+    </SafeAreaView>
+
+    // <AnimatedScrollView style={styles.container}>
+      
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    flex: 1,
+    justifyContent:'center',
+    alignItems: 'flex-start',
     backgroundColor: '#76a6ef',
   },
   text: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#fff',
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 10,
+    borderBottomColor: 'grey',
+    borderTopColor: 'grey',
+    borderTopWidth:'1px',
+    borderBottomWidth:'1px',
+    marginVertical: 0,
+    marginHorizontal: 0,
+  },
+  title: {
+    fontSize: 16,
   },
 });
 
