@@ -4,10 +4,12 @@ import Home from '../components/Home';
 import Home2 from '../components/Home';
 import Home3 from '../components/Home';
 import Groups from '../components/Groups';
+import GameViewExpanded from '../components/GameViewExpanded';
 import Create from '../components/Create';
 import Profile from '../components/Profile';
 import TabBar from '../components/TabBar';
 import ProfileNavigator from './ProfileNavigator';
+import HomeNavigator from './HomeNavigator';
 
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
@@ -15,7 +17,7 @@ const TabNavigator = () => {
     <Tab.Navigator tabBar={props => <TabBar {...props} />}>
       <Tab.Screen
         name='Home'
-        component={Home}
+        component={HomeNavigator}
         initialParams={{ icon: 'ios-home' }}
       />
       <Tab.Screen

@@ -1,15 +1,22 @@
 import React from 'react';
 import { View, StyleSheet, Text, Button } from 'react-native';
+import Home from '../components/Home'
 
 
-const Profile = ({ navigation }) => {
-  return (
+  export function GameViewExpanded({navigation, route}){
+    const { itemId, otherParam, stuffTitle, stuff2 } = route.params;
+    return (
+    
     <View style={styles.container}>
-      <Text style={styles.text}>Profile</Text>
+      <Text style={styles.text}>GameViewExpanded</Text>
+      {/* <Text style={styles.text}>{itemID}</Text> */}
+      <Text style={styles.text}>Game Title: {stuff2}</Text>
+
+
       {/* On button press navigate to Test component, ordering of nested navigators is in ProfileNavigator*/}
       <Button
-        onPress={() => navigation.navigate('Test')}
-        title='Move to another screen!'
+        onPress={() => navigation.navigate('Home')}
+        title='go home!!'
       />
     </View>
   );
@@ -27,4 +34,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profile;
+export default GameViewExpanded;

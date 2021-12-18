@@ -1,8 +1,10 @@
 import React from 'react';
 import {TouchableWithoutFeedback, SafeAreaView, StyleSheet, Text, View, FlatList} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { color } from 'react-native-reanimated';
 import AnimatedScrollView from './AnimatedScrollView';
+import GameViewExpanded from './GameViewExpanded';
+
 
 
 const DATA = [
@@ -66,11 +68,14 @@ const DATA = [
 
 const Item = ({ title }) => (
   <View style={styles.item}>
+    {/* title is DATA json title */}
     <Text style={styles.title}>{title}</Text>
   </View>
 );
 
-const Home = () => {
+const Home = ({navigation}) => {
+
+  const gameTitle = styles.title
 
   const renderItem = ({ item }) => (
     <View>
@@ -81,20 +86,26 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{flex:1, justifyContent: 'flex-start', alignItems:'flex-start'}}>
+      {/* <View style={{flex:1, justifyContent: 'flex-start', alignItems:'flex-start'}}>
       <Text>
         Recent Games
       </Text>
       </View>
-      <TouchableWithoutFeedback onPress={() => alert('Pressed!')}>
+       */}
       <View style={{flex:20, flexDirection:'column'}}>
+        {/* Mapping FlatList items by item id */}
       <FlatList
         data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
+        renderItem={({item}) => (
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('GameViewExpanded', {itemId: 86, otherParam: 'anything you want here', stuff2: item.title})}>
+            <Text style={styles.item}>{item.title}</Text>
+          </TouchableWithoutFeedback>
+        )}
+
+        // keyExtractor={item => item.id}
       />
       </View>
-      </TouchableWithoutFeedback>
+      {/* </TouchableWithoutFeedback> */}
       
     </SafeAreaView>
 
